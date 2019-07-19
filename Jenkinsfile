@@ -11,6 +11,18 @@ pipeline {
                 sh 'echo "Pipeline executada"'
             }
         }
+      stage('Rodando a imagem') {
+         agent {
+            docker { image 'node:7-alpine' }
+          }
+        stages {
+            stage('Test') {
+                steps {
+                    sh 'node --version'
+                }
+            }
+        }
+      }
     }
    post {
         always {
