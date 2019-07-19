@@ -1,5 +1,11 @@
 pipeline {
     agent any
+   
+    environment {
+        DISABLE_AUTH = 'true'
+        DB_ENGINE    = 'sqlite'
+    }
+
     stages {
         stage('Execucao') {
             steps {
@@ -22,6 +28,11 @@ pipeline {
                 }
             }
         }
+      }
+      stage('Mostar variaveis de ambiente'){
+         steps {
+                sh 'printenv'
+            }
       }
     }
    post {
